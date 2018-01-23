@@ -2,6 +2,11 @@
 
 - [Developing RESTful APIs with Lumen (A PHP Micro-framework)](https://auth0.com/blog/developing-restful-apis-with-lumen/)
 
+## Usage
+
+```
+php -S localhost:8000 -t public
+```
 
 ___
 
