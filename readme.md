@@ -8,25 +8,80 @@
 php -S localhost:8000 -t public
 ```
 
-___
+## Tips
 
-## Lumen PHP Framework
+### Miss Migration
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+マイグレーションで怒られる時がある。
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+```sh
+$php artisan migrate
+In Connection.php line 664:
+SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using password: YES) (SQL: select * from information_schema.tables where table_schema = homestead and table_name = migrations)
+```
 
-## Official Documentation
+これはMySQLに該当するuserとDBが無いために起きてしまった。ので、権限を持っているユーザを作成してDBと該当するtableを作成する。
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
 
-## Security Vulnerabilities
+今いるユーザを確認する。
+`select User from user`
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+user mysql
+
+mysql> select User from user;
++---------------+
+| User          |
++---------------+
+| mysql.session |
+| mysql.sys     |
+| rails_app     |
+| root          |
++---------------+
+4 rows in set (0.00 sec)
+```
+
+`.env`の設定に合わせてユーザを作成する。
+
+```
+create databses homestead;
+```
+
+`homsetead`DBに権限を持ったユーザを作成する。
+
+```
+grant all on *.* to 'homestead'@localhost;
+```
+
+作成したuserとhostを確認する。
+
+```
+select Host, User from mysql.user;
+
++-----------+---------------+
+| Host      | User          |
++-----------+---------------+
+| localhost | homestead     |
+| localhost | mysql.session |
+| localhost | mysql.sys     |
+| localhost | rails_app     |
+| localhost | root          |
++-----------+---------------+
+```
+
+#### `FatalThrowableError`が返ってくる時の対応方法
+
+`bootstrap\app.php`のコード内に
+
+```
+// $app->withEloquent();
+```
+があるので、こちらのコメントアウトを外す
+
+```
+$app->withEloquent();
+```
+
 
 ## License
 
