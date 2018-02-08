@@ -69,6 +69,19 @@ select Host, User from mysql.user;
 +-----------+---------------+
 ```
 
+#### `FatalThrowableError`が返ってくる時の対応方法
+
+`bootstrap\app.php`のコード内に
+
+```
+// $app->withEloquent();
+```
+があるので、こちらのコメントアウトを外す
+
+```
+$app->withEloquent();
+```
+
 
 ## License
 
