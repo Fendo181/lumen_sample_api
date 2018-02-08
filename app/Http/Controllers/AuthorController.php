@@ -1,16 +1,16 @@
 <?php
 
-namespace App\HTTP\Controller;
+namespace App\HTTP\Controllers;
 
 //Author Model
 use App\Author;
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller {
-
+class AuthorController extends Controller
+{
     public function showAllAuthors()
     {
-        return response()->json(Author::all);
+        return response()->json(Author::all());
     }
 
     public function showOneAuthor($id)
