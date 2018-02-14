@@ -1,0 +1,150 @@
+swagger: '2.0'
+info:
+  description: |
+    これはサンプルです.  You can find 
+    out more about Swagger at 
+    [http://swagger.io](http://swagger.io) or on 
+    [irc.freenode.net, #swagger](http://swagger.io/irc/).
+  version: "1.0.0"
+  title: Lumen Authors API 
+  contact:
+    email: fendo181git@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+# host: petstore.swagger.io
+# basePath: /v2
+
+tags:
+- name: authors
+  description: Authors Info
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+# schemes:
+# - http
+paths:
+  /authors:
+    get:
+      tags:
+      - authors
+      summary: Get all author by id
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: Successful
+          schema:
+           $ref: '#/definitions/Author'
+    post:
+      tags:
+      - authors
+      summary: Create an new author
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Add New Author 
+        required: true
+        schema:
+          $ref: '#/definitions/Author'
+      responses:
+        200:
+          description: Success
+  /authors/{id}:
+    get:
+      tags:
+      - authors
+      summary: Get an author by id
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        description: The id that needs to be fetched.  
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful 
+          schema:
+           $ref: '#/definitions/Author'
+        400:
+          description: Invalid id supplied
+        404:
+          description: User not found
+    put:
+      tags:
+      - authors
+      summary: Updated author by id
+      description: Update Author info
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        description: name that need to be updated
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Updated user object
+        required: true
+        schema:
+          $ref: '#/definitions/Author'
+      responses:
+        200:
+          description: author info
+    delete:
+      tags:
+      - authors
+      summary: Delete author by id
+      description: This can only be done by the logged in user.
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        description: The name that needs to be deleted
+        required: true
+        type: string
+      responses:
+        200:
+          description: Deleted Successfully
+definitions:
+  Author:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      github:
+        type: string
+      twitter:
+        type: string
+      location:
+        type: string
+      latest_article_published:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Fendo181/APP/1.0.0
+schemes:
+ - https
+ - http
