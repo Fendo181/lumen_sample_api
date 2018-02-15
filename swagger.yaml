@@ -1,12 +1,12 @@
 swagger: '2.0'
 info:
   description: |
-    これはサンプルです.  You can find 
-    out more about Swagger at 
-    [http://swagger.io](http://swagger.io) or on 
+    これはサンプルです.  You can find
+    out more about Swagger at
+    [http://swagger.io](http://swagger.io) or on
     [irc.freenode.net, #swagger](http://swagger.io/irc/).
   version: "1.0.0"
-  title: Lumen Authors API 
+  title: Lumen Authors API
   contact:
     email: fendo181git@gmail.com
   license:
@@ -50,7 +50,7 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Add New Author 
+        description: Add New Author
         required: true
         schema:
           $ref: '#/definitions/Author'
@@ -68,12 +68,12 @@ paths:
       parameters:
       - name: id
         in: path
-        description: The id that needs to be fetched.  
+        description: The id that needs to be fetched.
         required: true
         type: string
       responses:
         200:
-          description: successful 
+          description: successful
           schema:
            $ref: '#/definitions/Author'
         400:
