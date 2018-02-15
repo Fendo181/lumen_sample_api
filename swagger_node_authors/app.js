@@ -15,6 +15,9 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   swaggerExpress.register(app);
 
   var port = process.env.PORT || 10010;
+
+  app.use(swaggerExpress.runner.swaggerTools.swaggerUi());    //追記
+
   app.listen(port);
 
   if (swaggerExpress.runner.swagger.paths['/hello']) {
