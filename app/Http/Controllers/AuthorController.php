@@ -20,8 +20,13 @@ class AuthorController extends Controller
 
     public function create(Request $request)
     {
-        $author = Author::create($request->all());
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'location' => 'required|alpha'
+        ]);
 
+        $author = Author::create($request->all());
         return response()->json($author, 201);
     }
 
