@@ -24,8 +24,8 @@ cp env.example .env
 最初にDBと権限を持ったユーザを作成する。
 
 ```
-mysql>create databses homestead;
-mysql>grant all on *.* to 'homestead'@localhost;
+mysql>create database DB_NAME;
+mysql>grant all on DB_NAME.* to 'USER_NAME'@HOST_NAME identified by 'PASSWORD';
 ```
 
 migrate
