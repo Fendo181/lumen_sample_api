@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    /**
+    /**L¬
      * The attributes that are mass assignable.
      *
      * @var array
