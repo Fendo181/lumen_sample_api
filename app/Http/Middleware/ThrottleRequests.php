@@ -1,6 +1,7 @@
 <?php
 
-namespace Illuminate\Routing\Middleware;
+//namespace Illuminate\Routing\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use RuntimeException;
