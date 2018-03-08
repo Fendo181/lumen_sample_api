@@ -27,6 +27,8 @@ $app = new Laravel\Lumen\Application(
 
 $app->withEloquent();
 
+// Routing
+$app->register(Appzcoder\LumenRoutesList\RoutesCommandServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
