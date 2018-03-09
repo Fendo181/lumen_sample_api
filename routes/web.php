@@ -16,7 +16,7 @@
 //    return $router->app->version();
 //});
 
-$router->group(['middleware' => 'throttle:3,1'], function () use ($router) {
+$router->group(['middleware' => 'throttle:10,1'], function () use ($router) {
     $router->get('/', function () use ($router) {
         return view('index');
     });
