@@ -3,7 +3,7 @@
 @section('title', 'Authors Form')
 
 @section('content')
-<h3>Authors Porm </h3>
+<h3>Authors Form </h3>
 <form action="/api/authors" method="post">
     <div class="form-group">
         <label for="name">Name</label>
