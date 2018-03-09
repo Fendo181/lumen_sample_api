@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,8 +16,10 @@
 //    return $router->app->version();
 //});
 
-$router->get('/',function() use ($router) {
-    return view('index');
+$router->group(['middleware' => 'throttle:10,1'], function () use ($router) {
+    $router->get('/', function () use ($router) {
+        return view('index');
+    });
 });
 
 $router->group(['prefix' => 'api'], function() use ($router){
