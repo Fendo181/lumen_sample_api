@@ -22,7 +22,7 @@ $router->group(['middleware' => 'throttle:10,1'], function () use ($router) {
     });
 });
 
-$router->group(['prefix' => 'api'], function() use ($router){
+$router->group(['prefix' => 'api', 'middleware'=>'security'], function() use ($router){
     $router->get('authors', ['uses' => 'AuthorController@showAllAuthors']);
     $router->get('authors/{id}', ['uses' => 'AuthorController@showOneAuthor']);
     $router->post('authors', ['uses' => 'AuthorController@create']);
